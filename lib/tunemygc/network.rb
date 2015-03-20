@@ -9,8 +9,9 @@ module TuneMyGc
   def self.http_client
     uri = URI("https://#{TuneMyGc::HOST}")
     client = Net::HTTP.new(uri.host, uri.port)
-    client.use_ssl = false
+    client.use_ssl = true
     client.read_timeout = NETWORK_TIMEOUT
+    client.verify_mode = OpenSSL::SSL::VERIFY_NONE
     client
   end
 end
